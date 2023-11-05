@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.joinus.mapper.MeetingMapper">
+
+<!-- 조인할 테이블 1-1 -->
+<resultMap type="PartnerPlacesVo" id="partnerPlacesMap">
+   <id property="partner_place_no" column="partner_place_no"/>
+   <id property="place_type_no" column="place_type_no"/>
+   <id property="partner_place_name" column="partner_place_name"/>
+   <id property="partner_place_image" column="partner_place_image"/>
+   <id property="partner_place_price" column="partner_place_price"/>
+   <id property="partner_place_address" column="partner_place_address"/>
+   <id property="partner_place_tel" column="partner_place_tel"/>
+</resultMap>
+
+<!-- 조인할 테이블 1-2 -->
+<resultMap type="RentalPlacesVo" id="rentalPlacesMap">
+   <id property="rental_places_no" column="rental_places_no"/>
+   <id property="reservation_no" column="reservation_no"/>
+   <id property="member_no" column="member_no"/>
+   <id property="partner_place_no" column="partner_place_no"/>
+   <id property="payment_no" column="payment_no"/>
+   <id property="rental_date" column="rental_date"/>
+   <id property="rental_time" column="rental_time"/>
+</resultMap>
+
+<!-- 조인할 테이블 1-3 -->
+<resultMap type="MeetingMembersVo" id="meetingMembersMap">
+   <id property="meeting_member_no" column="meeting_member_no"/>
+   <id property="club_no" column="club_no"/>
+   <id property="club_meeting_no" column="club_meeting_no"/>
+   <id property="member_no" column="member_no"/>
+</resultMap>
+
+<!-- 조인할 테이블 1-4 -->
+<resultMap type="MembersVo" id="membersMap">
+   <id property="member_no" column="member_no"/>
+   <id property="member_email" column="member_email"/>
+   <id property="member_pass" column="member_pass"/>
+   <id property="member_name" column="member_name"/>
+   <id property="member_location" column="member_location"/>
+   <id property="member_tel" column="member_tel"/>
+   <id property="member_image" column="member_image"/>
+   <id property="member_regdate" column="member_regdate"/>
+   <id property="member_updatedate" column="member_updatedate"/>
+   <id property="member_authority" column="member_authority"/>
+   <id property="member_signup_type" column="member_signup_type"/>
+   <id property="member_status" column="member_status"/>
+   <id property="member_role" column="member_role"/>
+   <id property="member_type" column="member_type"/>
+   <id property="member_location" column="member_location"/>
+</resultMap>
+
+
+
+<!-- 조인한 맵 만들어주기 1 -->
+<resultMap type="MeetingTotalBean" id="RentalListMap">
+	<collection property="partnerPlacesVo" resultMap="partnerPlacesMap"/>
+	<collection property="rentalPlacesVo" resultMap="rentalPlacesMap"/>
+	<collection property="meetingMembersVo" resultMap="meetingMembersMap"/>
+	<collection property="membersVo" resultMap="membersMap"/>
+</resultMap>
+
+
+<insert id="CreateMeeting">
+	insert into club_meetings(club_no, club_meeting_title, club_meeting_capacity, club_meeting_date,
+	 club_meeting_location, club_meeting_dues,club_meeting_address, club_meeting_content)
+	values(#{club_no},#{club_meeting_title},#{club_meeting_capacity},#{club_meeting_date},
+	#{club_meeting_location},#{club_meeting_dues},#{club_meeting_address}, #{club_meeting_content})
+</insert>
+
+<select id="GetRental" resultMap="RentalListMap">
+	
+	select rp.rental_places_no, rp.member_no, rp.partner_place_no, rp.rental_date, pp.partner_place_name, pp.partner_place_address
+	from rental_places rp
+	join partner_places pp
+		on(rp.partner_place_no = pp.partner_place_no)
+		where member_no = #{member_no}
+
+</select>
+
+<select id="GetRentalREST" resultMap="RentalListMap">
+	
+	select rp.rental_places_no, rp.member_no, rp.partner_place_no, rp.rental_date, pp.partner_place_name, pp.partner_place_address
+	from rental_places rp
+	join partner_places pp
+		on(rp.partner_place_no = pp.partner_place_no)
+		where rental_places_no = #{rental_places_no}
+
+</select>
+
+<select id="getMeetingMemberStatus" resultType="int">
+ select meeting_member_no
+ from meeting_members
+ where club_meeting_no = #{club_meeting_no} and member_no = #{member_no}
+</select>
+
+
+<delete id="DeleteMeeting">
+	delete from club_meetings
+	where club_meeting_no = #{club_meeting_no}
+
+</delete>
+<delete id="DeleteMeetingMember">
+	delete from meeting_members
+	where club_meeting_no = #{club_meeting_no}
+
+</delete>
+
+<delete id="CancelMeetingMember">
+	delete from meeting_members
+	where club_meeting_no = #{club_meeting_no} and
+			club_no = #{club_no} and
+			member_no = #{member_no}
+
+</delete>
+
+<insert id="InsertMeetingMember">
+	insert into meeting_members(club_meeting_no, club_no, member_no)
+	values (#{club_meeting_no}, #{club_no}, #{member_no})
+</insert>
+
+<select id="GetMeeting_no" resultType="ClubMeetingsVo">
+	select club_meeting_title, club_meeting_location, club_meeting_status, club_meeting_capacity, club_meeting_content,
+	club_meeting_dues, club_meeting_no, club_meeting_address,
+	date_format(club_meeting_date, '%Y-%m-%d %H:%i') as club_meeting_date
+	from club_meetings
+	where club_meeting_no = #{club_meeting_no}
+</select>
+	
+<update id="UpdateMeeting">
+	update club_meetings
+	set
+	 
+	 <if test="#{vo.club_meeting_title} != null">
+	 club_meeting_title = #{vo.club_meeting_title},
+	 </if>
+	 
+	 <if test="#{vo.club_meeting_capacity} != null">
+	 club_meeting_capacity = #{vo.club_meeting_capacity},
+	 </if>
+	 
+	 <if test="#{vo.club_meeting_date} != null">
+	 club_meeting_date = #{vo.club_meeting_date},
+	 </if>
+	 
+	 <if test="#{vo.club_meeting_location} != null">
+	 club_meeting_location = #{vo.club_meeting_location},
+	 </if>
+	 
+	 <if test="#{vo.club_meeting_address} != null">
+	 club_meeting_address = #{vo.club_meeting_address},
+	 </if>
+	 
+	 <if test="#{vo.club_meeting_dues} != null">
+	 club_meeting_dues = #{vo.club_meeting_dues},
+	 </if>
+	 
+	 <if test="#{vo.club_meeting_content} != null">
+	 club_meeting_content = #{vo.club_meeting_content}
+	 </if>
+	 
+	where club_meeting_no = #{club_meeting_no}
+
+
+</update>
+
+
+	<!-- 정모 참석 신청  -->
+	<insert id="joinMeeting">
+		insert into meeting_members (club_no,club_meeting_no,member_no)
+		values(#{club_no},#{club_meeting_no},#{member_no})
+	</insert>
+	<!-- 정모 참석 취소  -->
+	<delete id="outMeeting">
+		delete from meeting_members where club_no=#{club_no} and club_meeting_no=#{club_meeting_no} and member_no=#{member_no}
+	</delete>
+	<!-- 정모 참석여부 확인 -->
+	<select id="getMeetingMember" resultType="MeetingMembersVo">
+		select * from meeting_members where club_no=#{club_no} and member_no=#{member_no}
+	</select>
+	<!-- 정모 참석 인원 -->
+	<select id="getMeetingMemberCnt" parameterType="Integer" resultType="HashMap">
+		select distinct club_meeting_no as meetingNo, count(member_no) as cntNo from meeting_members where club_no=#{club_no} group by club_meeting_no
+	</select>
+	<select id="getMemberCapa" parameterType="Integer"  resultType="HashMap">
+		select a.club_meeting_capacity as clubCapa, count(b.member_no) as memberCnt
+		from club_meetings a join meeting_members b
+		on (a.club_meeting_no = b.club_meeting_no)
+		where a.club_meeting_no=#{club_meeting_no} and a.club_no=#{club_no}
+	</select>
+	
+	
+	
+<select id="SelectAddr" resultType="string">
+	select club_meeting_address
+	from club_meetings
+	where club_meeting_no = #{club_meeting_no}
+</select>
+
+<select id="GetMeetingMember" resultMap="RentalListMap">
+	select mm.meeting_member_no, mm.club_no, mm.member_no, m.member_name
+	from meeting_members mm
+	join members m
+	on(mm.member_no = m.member_no)
+	where mm.club_meeting_no = #{club_meeting_no} and club_no = #{club_no}
+</select>
+
+<select id="GetMeetingStatus" resultType="string">
+	 select club_meeting_status
+	 from club_meetings
+	 where club_meeting_no = #{club_meeting_no}
+</select>
+
+<update id="UpdateMeetingStatus">
+	update club_meetings
+	set club_meeting_status = #{club_meeting_status}
+	where club_meeting_no = #{club_meeting_no}
+</update>
+
+<select id="GetMeetingList" resultType="ClubMeetingsVo">
+	select club_meeting_no, club_meeting_title, club_meeting_content, club_meeting_date, club_meeting_location, club_meeting_status
+	from club_meetings
+	where club_no=#{club_no} and club_meeting_status=#{status}
+</select>
+
+<select id="CheckMeetingDate" resultType="int">
+select count(club_meeting_date)
+from club_meetings
+where club_no=#{club_no} and club_meeting_date <![CDATA[<]]> now() and (club_meeting_status ='모집중' or club_meeting_status ='마감')
+</select>
+
+<select id="CntMeetingMember" resultType="int">
+select count(member_no)
+from meeting_members
+where club_meeting_no = #{club_meeting_no}
+
+</select>
+
+
+
+</mapper> 

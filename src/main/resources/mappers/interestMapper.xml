@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.joinus.mapper.InterestMapper">
+	<insert id="insertMemberInterest">
+		insert into member_interests(member_no, interest_no)
+		values(
+		#{member_no},
+		#{interest_no}
+		)
+	</insert>
+	<select id="selectInterestAll" resultType="InterestsVo">
+		select * from
+		interests
+	</select>
+
+	<select id="selectInterestByMemberNo" resultType="InterestsVo">
+		<![CDATA[
+			select * from interests
+			where interest_no = (
+								select interest_no 
+								from member_interests 
+								where member_no = #{member_no})
+		]]>
+
+	</select>
+</mapper>

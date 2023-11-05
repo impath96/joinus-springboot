@@ -1,0 +1,27 @@
+JoinUs DB Update
+
+2022.07.14
+ - 
+
+
+2022.07.06
+  - Members테이블 member_image 기본값 null -> 'default.jpg' 변경
+  - INTERESTS테이블 interest_icon data정보 추가
+  - CLUBS테이블 club_capacity 기본값 2 -> 50 변경
+  - 전체 테이블 컬럼 중 TIMESTAMP에 해당하는 자료형 DATETIME으로 일괄 변경
+
+
+2022.07.03
+  - 전체 테이블명 복수형으로 수정 (LOCATION_지역 테이블 제외)
+  - CLUB_MEETING 테이블에 club_meeting_title(정모이름) 컬럼추가
+  - CLUB_MEMBERLIST 테이블명 CLUB_MEMBERS로 변경 및 club_member_regdate(모임가입일)컬럼 추가
+  - BOARD_COMMENTS 테이블에 컬럼 board_comment_date(댓글작성일) 컬럼추가
+  - interest_icon을 제외한 나머지 사진 컬럼명들을 image로 통일
+    (club_boards 테이블의 club_board_photo -> club_board_image로 변경)
+  - MEMBERS테이블에 컬럼명 member_role -> member_authority로 변경(common/admin으로 분류)
+
+
+
+2022.07.02
+  - board_types, members, club_member_roles, interests, interest_details, location_city, location_dong, board_types 테이블 데이터 추가
+ 

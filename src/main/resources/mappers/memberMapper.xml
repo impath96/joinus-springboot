@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.joinus.mapper.MemberMapper">
+	<select id="selectMemberByEmail" resultType="MembersVo">
+		<![CDATA[
+		select * from members 
+		where member_email=#{member_email}
+		]]>
+	</select>
+		
+	<select id="selectMemberByNo" resultType="MembersVo">
+		select * from members where member_no=#{member_no}
+	</select>
+	
+	<select id="getMemberAll" resultType="MembersVo">
+		<![CDATA[
+			select * from members
+			where member_no > 0
+			order by member_no asc, member_regdate asc
+			limit #{pageStart}, ${perPageNum}
+		]]>
+	</select>
+	<select id="getTotalCount" resultType="int">
+		<![CDATA[
+			select count(*) from members;
+		]]>
+	</select>
+	<insert id="insertMember" parameterType="MembersVo">
+		<![CDATA[
+		insert into members
+		(             
+ 		 member_email,       
+ 		 member_pass,         
+		 member_name,         
+		 member_tel,          
+		 member_image,            
+		 member_signup_type,
+		 member_location 
+		)
+		values(
+			#{member_email},
+			#{member_pass}, 
+			#{member_name},
+			#{member_tel},
+			#{member_image},
+			#{member_signup_type},
+			#{member_location}
+			)
+		]]>
+		
+	</insert>
+	<insert id="insertMemberInterest">
+		insert into member_interests(member_no, interest_no)
+		values(
+			#{member_no}, 
+			#{interest_no}
+			)
+	</insert>
+	
+	<update id="updateImage">
+		update members
+		set member_image=#{savedFileName}
+		where member_no=#{member_no}
+	</update>
+	<update id="updateName">
+		update members
+		set member_name=#{member_name}
+		where member_no=#{member_no}
+	</update>
+	<update id="updateLocation">
+		update members
+		set member_location=#{member_location}
+		where member_no=#{member_no}
+	</update>
+	
+	<update id="updatePassword">
+		update members
+		set member_pass=#{member_pass}
+		where member_no=#{member_no}
+	</update>
+	
+	<update id="deleteMembers" parameterType="java.util.List">
+		update 
+	</update>
+	
+	<select id="selectMember" resultType="MembersVo">
+		<![CDATA[
+		select * from members
+		where member_email=#{member_email} and member_pass=#{member_pass}
+		]]>
+	</select>
+	<select id="myClubList" resultType="MyClubDto">
+		<![CDATA[
+		select 
+				c.club_no,
+				c.club_name, 
+				c.club_content, 
+				c.club_image, 
+				i.interest_icon 
+		from clubs c 
+		join club_interests ci
+			on c.club_no = ci.club_no
+		join interests i
+			on ci.interest_no = i.interest_no
+		where c.club_no in (
+							select club_no 
+							from club_members 
+							where member_no = #{member_no})
+		]]>
+	</select>
+</mapper>

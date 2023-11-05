@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.joinus.mapper.RentalMapper">
+	
+	<!-- 대관상세 -->
+	<select id="getPlaceContent" resultType="PartnerPlacesVo">
+		select * from partner_places
+		where partner_place_no = #{partner_place_no}
+	</select>
+	
+	<!-- 제휴시설 리스트 -->
+	<select id="getAllPartnerPlaceList" resultType="PartnerPlacesVo">
+		select * from partner_places
+	</select>
+	
+	<!-- 부산 (구) 리스트 -->
+	<select id="getBusanGuList" resultType="LocationCityVo">
+		select * from location_city
+		where location_city_name like '부산%'
+		order by location_gu_name;
+	</select>
+	
+	<!-- (구) 별 제휴시설리스트 -->
+	<select id="getCityPartnerPlaceList" resultType="PartnerPlacesVo">
+		select * from partner_places
+		where partner_place_address like concat('%',#{partner_place_address},'%')
+	</select>
+	
+	<!-- 장소유형, 위치 제휴시설리스트 -->
+	<select id="getPartnerPlaceList" resultType="PartnerPlacesVo">
+		select * from partner_places
+		where partner_place_type = #{partner_place_type} and partner_place_address like concat('%',#{partner_place_address},'%')
+	</select>
+	
+	<!-- 장소유형별 제휴시설리스트 -->
+	<select id="getTypePartnerPlaceList" resultType="PartnerPlacesVo">
+		select * from partner_places
+		where partner_place_type = #{partner_place_type}
+	</select>
+	
+	<!-- 예약 일자/시간 정보 리스트 -->
+	<select id="getRentalPlaceDate" resultType="RentalPlacesVo">
+		select rental_date, rental_time_no
+		from rental_places
+		where partner_place_no = #{partner_place_no}
+	</select>
+	
+	<!-- 예약 시간 리스트 -->
+	<select id="getRentalTime" resultType="java.lang.Integer">
+		select rental_time_no from rental_places
+		where rental_date = #{rental_date} and partner_place_no = #{partner_place_no}
+	</select>
+
+
+	<!-- 결제 -->
+	<insert id="pay">
+		insert into payments(reservation_no,member_no,partner_place_no,partner_place_price,payment_price,payment_status)
+		 values(#{reservation_no},#{member_no},#{partner_place_no},#{partner_place_price},#{payment_price},#{payment_status})
+		 <selectKey resultType="Integer" keyProperty="payment_no" order="AFTER">
+		SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<!-- 결제전 예약정보 저장(일자, 시간) -->
+	<insert id="placeBeforePay">
+		insert into rental_places(rental_date, rental_time_no)
+		values(#{rental_date}, #{rental_time_no})
+	</insert>
+	
+	<!-- 가장 최근에 저장한 예약정보 가져오기 -->
+	<select id="getLatelyRentalPlace" resultType="RentalPlacesVo">
+		select * from rental_places
+		where rental_places_no = (select count(*) from rental_places)
+	</select>
+	
+	<!-- 예약정보 개수 -->
+	<select id="rentalPlaceCnt" resultType="java.lang.Integer">
+		select count(rental_places_no) from rental_places
+	</select>
+	
+	<!-- 결제 후 예약정보 update -->
+	<update id="updateLatelyRentalPlace">
+		update rental_places set reservation_no = #{reservation_no}, member_no = #{member_no}, partner_place_no = #{partner_place_no}, payment_no = #{payment_no}
+		where rental_places_no = #{rental_places_no}	
+	</update>
+
+</mapper>  
