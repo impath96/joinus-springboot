@@ -1,8 +1,9 @@
 package com.joinus.controller;
 
+import com.joinus.domain.PlacesVo;
+import com.joinus.service.PlaceService;
 import java.io.IOException;
 import java.util.List;
-
 import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.joinus.domain.PlacesVo;
-import com.joinus.service.PlaceService;
 
 @Controller
 @RequestMapping("/place/*")

@@ -1,11 +1,10 @@
 package com.joinus.persistence;
 
 
-import java.util.List;
-
 import com.joinus.domain.Criteria;
 import com.joinus.domain.MembersVo;
 import com.joinus.domain.MyClubDto;
+import java.util.List;
 
 public interface MemberDao {
 	// 이메일로 회원 찾기

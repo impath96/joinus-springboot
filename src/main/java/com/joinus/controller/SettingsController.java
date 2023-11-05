@@ -1,11 +1,14 @@
 package com.joinus.controller;
 
+import com.joinus.domain.InterestsVo;
+import com.joinus.domain.MembersVo;
+import com.joinus.service.InterestService;
+import com.joinus.service.MemberService;
+import com.joinus.util.FileUtils;
 import java.util.List;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartResolver;
-
-import com.joinus.domain.InterestsVo;
-import com.joinus.domain.MembersVo;
-import com.joinus.service.InterestService;
-import com.joinus.service.MemberService;
-import com.joinus.util.FileUtils;
 
 @Controller
 @RequestMapping("/settings/*")

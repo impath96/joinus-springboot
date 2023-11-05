@@ -1,8 +1,7 @@
 package com.joinus.persistence;
 
-import java.util.List;
-
 import com.joinus.domain.ClubsVo;
+import java.util.List;
 
 public interface MainDao {
 	

@@ -1,11 +1,16 @@
 package com.joinus.controller;
 
+import com.joinus.auth.AuthInfo;
+import com.joinus.auth.AuthLogin;
+import com.joinus.auth.GoogleLogin;
+import com.joinus.auth.KakaoLogin;
+import com.joinus.domain.MembersVo;
+import com.joinus.service.MemberService;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutionException;
-
 import javax.servlet.http.HttpSession;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.joinus.auth.AuthInfo;
-import com.joinus.auth.AuthLogin;
-import com.joinus.auth.GoogleLogin;
-import com.joinus.auth.KakaoLogin;
-import com.joinus.domain.MembersVo;
-import com.joinus.service.MemberService;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller

@@ -1,9 +1,7 @@
 package com.joinus.domain;
 
-import java.security.NoSuchAlgorithmException;
-
 import com.joinus.util.SHA256;
-
+import java.security.NoSuchAlgorithmException;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

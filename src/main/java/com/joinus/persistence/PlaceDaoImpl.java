@@ -1,14 +1,11 @@
 package com.joinus.persistence;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Repository;
-
 import com.joinus.domain.LocationCityVo;
 import com.joinus.domain.PlacesVo;
+import java.util.List;
+import javax.inject.Inject;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class PlaceDaoImpl implements PlaceDao{

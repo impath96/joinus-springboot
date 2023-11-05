@@ -1,10 +1,7 @@
 package com.joinus.domain;
 
-import java.util.Calendar;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 public class ClubMeetingsVo {

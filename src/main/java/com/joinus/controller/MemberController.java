@@ -1,17 +1,22 @@
 package com.joinus.controller;
 
+import com.joinus.domain.ClubsVo;
+import com.joinus.domain.InterestsVo;
+import com.joinus.domain.MembersVo;
+import com.joinus.domain.MyClubDto;
+import com.joinus.domain.PasswordCheckDto;
+import com.joinus.service.ClubService;
+import com.joinus.service.InterestService;
+import com.joinus.service.MemberService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,17 +35,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.joinus.domain.ClubsVo;
-import com.joinus.domain.InterestsVo;
-import com.joinus.domain.MembersVo;
-import com.joinus.domain.MyClubDto;
-import com.joinus.domain.PasswordCheckDto;
-import com.joinus.service.ClubService;
-import com.joinus.service.InterestService;
-import com.joinus.service.MemberService;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller

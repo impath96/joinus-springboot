@@ -1,9 +1,8 @@
 package com.joinus.persistence;
 
-import java.util.List;
-
 import com.joinus.domain.LocationCityVo;
 import com.joinus.domain.PlacesVo;
+import java.util.List;
 
 public interface PlaceDao {
 	

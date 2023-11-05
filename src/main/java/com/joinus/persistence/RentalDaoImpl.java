@@ -1,19 +1,16 @@
 package com.joinus.persistence;
 
-import java.sql.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
-
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.stereotype.Repository;
-
 import com.joinus.domain.LocationCityVo;
 import com.joinus.domain.PartnerPlacesVo;
 import com.joinus.domain.PaymentsVo;
 import com.joinus.domain.RentalPlacesVo;
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.inject.Inject;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class RentalDaoImpl implements RentalDao {

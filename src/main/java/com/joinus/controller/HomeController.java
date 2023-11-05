@@ -1,20 +1,16 @@
 package com.joinus.controller;
 
+import com.joinus.domain.ClubsVo;
+import com.joinus.domain.MembersVo;
+import com.joinus.service.MainService;
 import java.util.List;
 import java.util.Locale;
-
 import javax.servlet.http.HttpSession;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import com.joinus.domain.ClubsVo;
-import com.joinus.domain.MembersVo;
-import com.joinus.service.MainService;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller

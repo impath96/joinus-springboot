@@ -1,12 +1,10 @@
 package com.joinus.persistence;
 
+import com.joinus.domain.ClubsVo;
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.joinus.domain.ClubsVo;
 
 @Repository
 public class MainDaoImpl implements MainDao{

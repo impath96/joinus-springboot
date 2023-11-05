@@ -20,7 +20,6 @@ import com.joinus.domain.PageMaker;
 import com.joinus.service.ClubService;
 import com.joinus.service.MemberService;
 
-import jdk.internal.org.jline.utils.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

@@ -1,16 +1,5 @@
 package com.joinus.persistence;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import com.joinus.domain.BoardCommentsVo;
 import com.joinus.domain.BoardLikesVo;
 import com.joinus.domain.BoardTotalBean;
@@ -27,6 +16,15 @@ import com.joinus.domain.InterestsVo;
 import com.joinus.domain.MeetingMembersVo;
 import com.joinus.domain.MeetingTotalBean;
 import com.joinus.domain.MembersVo;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class ClubDaoImpl implements ClubDao{
