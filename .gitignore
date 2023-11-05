@@ -286,4 +286,10 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
+### Addition settings
+target
+src/main/**/*.properties
+!src/main/**/application.properties
+
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,eclipse,java,gradle,visualstudiocode,intellij+all
