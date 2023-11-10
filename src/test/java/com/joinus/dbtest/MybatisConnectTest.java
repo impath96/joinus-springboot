@@ -1,33 +1,29 @@
 package com.joinus.dbtest;
 
-import javax.inject.Inject;
 import javax.sql.DataSource;
-
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class MybatisConnectTest {
 	
 	// DataSource 객체
-	@Inject
+	@Autowired
 	private DataSource dataSource;
 	
 	// SqlSessionFactory 객체
-	@Inject
+	@Autowired
 	private SqlSessionFactory sqlSessionFactory;
 	
-	
-	private static final Logger log = LoggerFactory.getLogger(MybatisConnectTest.class);
-	
-	@Test 
+	@Test
 	public void 마이바티스_연결_테스트() {
 		log.info("@@@@@@@@@@@@@@@sqlSessionFactory : " + sqlSessionFactory);
 		log.info("@@@@@@@@@@@@@@@dataSource : " + dataSource);

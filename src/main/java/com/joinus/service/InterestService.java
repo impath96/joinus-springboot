@@ -1,8 +1,7 @@
 package com.joinus.service;
 
-import java.util.List;
-
 import com.joinus.domain.InterestsVo;
+import java.util.List;
 
 public interface InterestService {
 	

@@ -1,10 +1,12 @@
 package com.joinus.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping(value = "/member/club/*")
 @Controller
+@RequestMapping(value = "/member/club/*")
+@RequiredArgsConstructor
 public class DomainController {
 	
 	

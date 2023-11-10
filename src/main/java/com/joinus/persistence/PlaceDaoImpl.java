@@ -3,15 +3,15 @@ package com.joinus.persistence;
 import com.joinus.domain.LocationCityVo;
 import com.joinus.domain.PlacesVo;
 import java.util.List;
-import javax.inject.Inject;
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class PlaceDaoImpl implements PlaceDao{
 	
-	@Inject
-	private SqlSession session;
+	private final SqlSession session;
 	
 	static final String NAMESPACE = "com.joinus.mapper.PlaceMapper";
 	

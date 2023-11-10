@@ -1,24 +1,20 @@
 package com.joinus.service;
 
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.joinus.domain.InterestsVo;
 import com.joinus.persistence.InterestDao;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class InterestServiceImpl implements InterestService {
 
-	@Autowired
-	InterestDao interestDao;
+	private final InterestDao interestDao;
 	
-	private static final Logger log = LoggerFactory.getLogger(InterestServiceImpl.class);
-
 	@Override
 	public List<InterestsVo> selectInterestAll() {
 		log.info("interest-service : 주 관심사 전체 조회");

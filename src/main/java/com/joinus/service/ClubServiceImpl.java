@@ -1,13 +1,5 @@
 package com.joinus.service;
 
-import java.util.List;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.joinus.domain.BoardCommentsVo;
 import com.joinus.domain.BoardLikesVo;
 import com.joinus.domain.BoardTotalBean;
@@ -25,14 +17,18 @@ import com.joinus.domain.MeetingMembersVo;
 import com.joinus.domain.MeetingTotalBean;
 import com.joinus.domain.MembersVo;
 import com.joinus.persistence.ClubDao;
+import java.util.List;
+import java.util.Map;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class ClubServiceImpl implements ClubService{
 	
-	private static final Logger log = LoggerFactory.getLogger(ClubServiceImpl.class);
-	
-	@Autowired
-	private ClubDao dao;
+	private final ClubDao dao;
 	
 	//클럽 멤버 조회
 	@Override

@@ -8,18 +8,17 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.inject.Inject;
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class RentalDaoImpl implements RentalDao {
 	
-	@Inject
-	private SqlSession sqlSession;
+	private final SqlSession sqlSession;
 	
 	static final String NAMESPACE = "com.joinus.mapper.RentalMapper";
-	
 
 	@Override
 	public PartnerPlacesVo getPartnerPlaceContent(Integer partner_place_no) {

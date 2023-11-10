@@ -1,21 +1,17 @@
 package com.joinus.service;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
-import org.springframework.stereotype.Service;
-
 import com.joinus.domain.ClubsVo;
 import com.joinus.persistence.MainDao;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class MainServiceImpl implements MainService {
 
-	@Inject
-	private MainDao dao;
-	
-	
+	private final MainDao dao;
+
 	@Override
 	public List<ClubsVo> getMostPopularClub() {
 		return dao.getMostPopularClub();

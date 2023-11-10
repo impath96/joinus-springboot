@@ -1,27 +1,22 @@
 package com.joinus.service;
 
-import java.sql.Date;
-import java.util.List;
-
-import javax.inject.Inject;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-
 import com.joinus.domain.LocationCityVo;
 import com.joinus.domain.PartnerPlacesVo;
 import com.joinus.domain.PaymentsVo;
 import com.joinus.domain.RentalPlacesVo;
 import com.joinus.persistence.RentalDao;
+import java.sql.Date;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class RentalServiceImpl implements RentalService {
 	
-	private static final Logger log = LoggerFactory.getLogger(RentalServiceImpl.class);
-	
-	@Inject
-	private RentalDao dao;
+	private final RentalDao dao;
 
 	@Override
 	public PartnerPlacesVo getPartnerPlaceContent(Integer partner_place_no) {

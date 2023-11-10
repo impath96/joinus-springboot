@@ -16,10 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,24 +27,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+@Slf4j
 @Controller
 @RequestMapping("/rental/*")
 public class RentalController {
 	
-	@Inject
-	private ClubService clubService;
-	
-	@Inject
-	private RentalService rentalService;
-	
-	private static final Logger log = LoggerFactory.getLogger(ClubController.class);
-	
-	private IamportClient api;
-	
-	public RentalController() {
+	private final ClubService clubService;
+	private final RentalService rentalService;
+	private final IamportClient api;
+
+	public RentalController(final ClubService clubService, final RentalService rentalService) {
 		// REST API 키와 REST API secret
 		this.api = new IamportClient("4450940620010058",
 				"cd721e413ac18a65fe657ac002c45a9427ca9cb46aa7cca4e0600788bf9c7b4d1de7fcb996d24ccd");
+		this.clubService = clubService;
+		this.rentalService =rentalService;
 	}
 	
 	

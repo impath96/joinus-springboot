@@ -16,8 +16,8 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -39,16 +39,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Slf4j
 @Controller
 @RequestMapping(value = "/member/*")
+@RequiredArgsConstructor
 public class MemberController {
 
-	@Autowired
-	private MemberService memberService;
-	@Autowired
-	private InterestService interestService;
-	@Autowired
-	private JavaMailSender mailSender;
-	@Autowired
-	private ClubService clubService;
+	private final MemberService memberService;
+	private final InterestService interestService;
+	private final JavaMailSender mailSender;
+	private final ClubService clubService;
 
 	// 회원가입 페이지 이동
 	@GetMapping("signup")

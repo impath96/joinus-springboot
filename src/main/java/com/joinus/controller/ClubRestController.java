@@ -9,9 +9,8 @@ import com.joinus.domain.PageMaker;
 import com.joinus.service.ClubService;
 import java.util.List;
 import javax.servlet.http.HttpSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -20,14 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping("/club/*")
+@RequiredArgsConstructor
 public class ClubRestController {
 
-	private static final Logger log = LoggerFactory.getLogger(ClubRestController.class);
-	
-	@Autowired
-	private ClubService service;
+	private final ClubService service;
 	
 	@RequestMapping(value="/{club_no}/rentalList", method=RequestMethod.GET)
 	public ResponseEntity<List<MeetingTotalBean>> rentalAll(

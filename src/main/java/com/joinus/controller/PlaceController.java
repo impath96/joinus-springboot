@@ -4,10 +4,9 @@ import com.joinus.domain.PlacesVo;
 import com.joinus.service.PlaceService;
 import java.io.IOException;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,14 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+@Slf4j
 @Controller
 @RequestMapping("/place/*")
+@RequiredArgsConstructor
 public class PlaceController {
-	
-	private static final Logger log = LoggerFactory.getLogger(PlaceController.class);
-	
-	@Autowired
-	private PlaceService placeService;
+
+	private final PlaceService placeService;
 	
 	
 	// 원데이클래스 리스트 크롤링

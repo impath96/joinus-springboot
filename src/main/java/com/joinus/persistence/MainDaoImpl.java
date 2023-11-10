@@ -2,15 +2,15 @@ package com.joinus.persistence;
 
 import com.joinus.domain.ClubsVo;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class MainDaoImpl implements MainDao{
 	
-	@Autowired
-	SqlSession sqlSession;
+	private final SqlSession sqlSession;
 	
 	private static final String NAMESPACE ="com.joinus.mapper.MainMapper";
 	
