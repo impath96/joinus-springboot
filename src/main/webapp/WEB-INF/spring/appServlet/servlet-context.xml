@@ -25,7 +25,6 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	<context:property-placeholder location="classpath:kakao.properties, classpath:google.properties"/>
 	<!-- oauth2 login  -->
 	<beans:bean id="kakaoClientId" class="java.lang.String">
 		<beans:constructor-arg
