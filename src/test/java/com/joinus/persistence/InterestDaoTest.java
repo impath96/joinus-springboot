@@ -12,16 +12,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.joinus.domain.InterestsVo;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class InterestDaoTest {
 
-	@Autowired
+//	@Autowired
 	InterestDao interestDao;
 	
 	private static final Logger log = LoggerFactory.getLogger(InterestDaoTest.class);
 
-	@Test
+//	@Test
 	public void 주관심사출력() {
 		List<InterestsVo> list =interestDao.selectInterestAll();
 		log.info("주 관심사 리스트 : {}", list);

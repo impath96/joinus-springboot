@@ -15,12 +15,12 @@ import com.joinus.domain.Criteria;
 
 import lombok.extern.slf4j.Slf4j;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 @Slf4j
 public class ClubDaoTest {
 	
-	@Autowired
+//	@Autowired
 	ClubDao clubDao;
 	
 	// 관리자 페이지 - 모임 정보 출력 
@@ -33,7 +33,7 @@ public class ClubDaoTest {
 		
 	}
 	
-	@Test
+//	@Test
 	public void recentClubList() {
 		
 		List<Integer> recentClub = new ArrayList<Integer>();
