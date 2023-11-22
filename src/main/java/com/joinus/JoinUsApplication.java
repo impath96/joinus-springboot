@@ -7,8 +7,8 @@ import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @ImportResource(value = {
-    "classpath:/WEB-INF/spring/root-context.xml",
-    "classpath:/WEB-INF/spring/appServlet/servlet-context.xml",
+    "classpath:/spring/root-context.xml",
+    "classpath:/spring/appServlet/servlet-context.xml",
 })
 @PropertySource(value = {
     "classpath:google.properties",
