@@ -6,25 +6,20 @@ import com.joinus.domain.MyClubDto;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.inject.Inject;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+@Slf4j
 @Repository
+@RequiredArgsConstructor
 public class MemberDaoImpl implements MemberDao {
 	
-	SqlSession sqlSession;
-	private static final String NAMESPACE = "com.joinus.mapper.MemberMapper";
-	
-	private static final Logger log = LoggerFactory.getLogger(MemberDaoImpl.class);
+	private final SqlSession sqlSession;
 
-	@Inject
-	public MemberDaoImpl(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
-	
+	private static final String NAMESPACE = "com.joinus.mapper.MemberMapper";
+
 	@Override
 	public MembersVo selectMemberByEmail(String member_email) {
 

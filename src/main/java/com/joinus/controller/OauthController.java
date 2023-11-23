@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutionException;
 import javax.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,14 +23,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Slf4j
 @Controller
 @RequestMapping("/oauth/*")
+@RequiredArgsConstructor
 public class OauthController {
 	
-	@Autowired
-	private AuthInfo kakaoAuthInfo;
-	@Autowired
-	private AuthInfo googleAuthInfo;
-	@Autowired
-	private MemberService memberService;
+	private final AuthInfo kakaoAuthInfo;
+	private final AuthInfo googleAuthInfo;
+	private final MemberService memberService;
 	
 	/* 문제점
 	 * 1) OauthController에 너무 많은 로직이 들어있다.

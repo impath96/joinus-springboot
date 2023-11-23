@@ -1,11 +1,15 @@
 package com.joinus.controller;
 
+import com.joinus.domain.Criteria;
+import com.joinus.domain.MembersVo;
+import com.joinus.domain.PageMaker;
+import com.joinus.service.ClubService;
+import com.joinus.service.MemberService;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,25 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.joinus.domain.Criteria;
-import com.joinus.domain.MembersVo;
-import com.joinus.domain.PageMaker;
-import com.joinus.service.ClubService;
-import com.joinus.service.MemberService;
-
-import lombok.extern.slf4j.Slf4j;
-
 @Slf4j
 @Controller
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class AdminController {
 
-	@Autowired
-	MemberService memberService;
-	
-	@Autowired
-	ClubService clubService;
-	
+	private final MemberService memberService;
+	private final ClubService clubService;
+
 	/**
 	 * 문제) 관리자 권한을 가진 회원을 검사하는 로직이 Controller 단에서 중복적으로 처리
 	 */

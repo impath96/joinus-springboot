@@ -20,22 +20,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+@Slf4j
 @Repository
+@RequiredArgsConstructor
 public class ClubDaoImpl implements ClubDao{
 	
-	@Autowired
-	private SqlSession sqlSession;
+	private final SqlSession sqlSession;
 	
 	static final String NAMESPACE ="com.joinus.mapper.ClubMapper";
 	static final String NAMESPACE2 ="com.joinus.mapper.MeetingMapper";
-	
-	private static final Logger log = LoggerFactory.getLogger(ClubDaoImpl.class);
 	
 	//클럽 멤버 조회
 	@Override

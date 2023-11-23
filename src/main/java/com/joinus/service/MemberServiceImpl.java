@@ -1,30 +1,24 @@
 package com.joinus.service;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.List;
-import java.util.UUID;
-
-import javax.inject.Inject;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.joinus.domain.Criteria;
 import com.joinus.domain.MembersVo;
 import com.joinus.domain.MyClubDto;
 import com.joinus.persistence.MemberDao;
 import com.joinus.util.SHA256;
-
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.UUID;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
-	@Inject
-	MemberDao memberDao;
+	private final MemberDao memberDao;
 
 
 	// 회원가입 처리

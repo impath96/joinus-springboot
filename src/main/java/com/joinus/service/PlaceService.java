@@ -1,11 +1,9 @@
 package com.joinus.service;
 
-import java.util.List;
-
-import org.json.simple.JSONArray;
-
 import com.joinus.domain.LocationCityVo;
 import com.joinus.domain.PlacesVo;
+import java.util.List;
+import org.json.simple.JSONArray;
 
 public interface PlaceService {
 	

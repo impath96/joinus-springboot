@@ -1,30 +1,25 @@
 package com.joinus.service;
 
+import com.joinus.domain.LocationCityVo;
+import com.joinus.domain.PlacesVo;
+import com.joinus.persistence.PlaceDao;
 import java.io.IOException;
 import java.util.List;
-
-import javax.inject.Inject;
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.joinus.domain.LocationCityVo;
-import com.joinus.domain.PlacesVo;
-import com.joinus.persistence.PlaceDao;
-
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class PlaceServiceImpl implements PlaceService{
 	
-	private static final Logger log = LoggerFactory.getLogger(PlaceServiceImpl.class);
-
-	@Inject
-	private PlaceDao dao;
+	private final PlaceDao dao;
 	
 	// 시설 목록(비제휴)
 	@Override

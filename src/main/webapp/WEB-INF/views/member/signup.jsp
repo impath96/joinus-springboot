@@ -253,10 +253,10 @@
 						</div>
 						<hr>
  						<div class="col-12 my-3 d-flex">
-							<a href="https://kauth.kakao.com/oauth/authorize?client_id=e56b53633c44d91056a98f83b04e7bfe&redirect_uri=http://localhost:8088/oauth/kakao&response_type=code" class="d-inline-flex w-50 p-4">
+							<a href="https://kauth.kakao.com/oauth/authorize?client_id=8ed639c50773ed03ec8d3184c465bec1&redirect_uri=http://localhost:8080/oauth/kakao&response_type=code" class="d-inline-flex w-50 p-4">
 								<img alt="카카오 로그인" src="${pageContext.request.contextPath }/resources/img/kakao_login.png" class="w-100">
 							</a>
-							<a href="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&response_type=code&client_id=463761723189-9objhtfnhck66j6bbvi2h0b7hmgnpsf9.apps.googleusercontent.com&redirect_uri=http://localhost:8088/oauth/google&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email"
+							<a href="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&prompt=consent&response_type=code&client_id=463761723189-9objhtfnhck66j6bbvi2h0b7hmgnpsf9.apps.googleusercontent.com&redirect_uri=http://localhost:8080/oauth/google&scope=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email"
 								class="d-inline-flex w-50 p-4">
 								<img alt="구글 로그인" src="${pageContext.request.contextPath }/resources/img/google_login.png" class="w-100">
 							</a>

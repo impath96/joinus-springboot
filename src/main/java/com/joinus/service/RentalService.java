@@ -1,12 +1,11 @@
 package com.joinus.service;
 
-import java.sql.Date;
-import java.util.List;
-
 import com.joinus.domain.LocationCityVo;
 import com.joinus.domain.PartnerPlacesVo;
 import com.joinus.domain.PaymentsVo;
 import com.joinus.domain.RentalPlacesVo;
+import java.sql.Date;
+import java.util.List;
 
 public interface RentalService {
 	

@@ -9,9 +9,8 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,28 +18,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartResolver;
 
+@Slf4j
 @Controller
 @RequestMapping("/settings/*")
+@RequiredArgsConstructor
 public class SettingsController {
-	@Autowired
-	MultipartResolver multipartResolver;
-	
-	@Autowired
-	MemberService memberService;
-	
-	@Autowired
-	InterestService interestService;
-	
-	private static final Logger log = LoggerFactory.getLogger(SettingsController.class);
-	
-	
-	@Autowired
-	public SettingsController(MemberService memberService) {
-		this.memberService = memberService;
-	}
 
+	private final MemberService memberService;
+	private final InterestService interestService;
+	
 	// 회원 계정 설정 페이지
 	@GetMapping("member")
 	public String settings(HttpSession session, Model model) {
