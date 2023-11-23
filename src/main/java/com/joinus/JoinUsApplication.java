@@ -7,7 +7,6 @@ import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @ImportResource(value = {
-    "classpath:/spring/root-context.xml",
     "classpath:/spring/appServlet/servlet-context.xml",
 })
 @PropertySource(value = {
