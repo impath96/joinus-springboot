@@ -6,9 +6,6 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@ImportResource(value = {
-    "classpath:/spring/appServlet/servlet-context.xml",
-})
 @PropertySource(value = {
     "classpath:google.properties",
     "classpath:dbconnect.properties",
